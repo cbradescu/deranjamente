@@ -1,0 +1,2 @@
+bundles:
+    - { name: Tlt\Bundle\TicketBundle\TltTicketBundle, priority: 100 }

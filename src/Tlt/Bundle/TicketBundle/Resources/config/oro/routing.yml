@@ -1,0 +1,13 @@
+tlt_ticket:
+    resource: "@TltTicketBundle/Controller/"
+    type:     annotation
+    prefix:   /tlt_ticket
+
+tlt_ticket_bundle_api:
+    resource: "@TltTicketBundle/Resources/config/oro/routing_api.yml"
+    type: rest
+    prefix: api/rest/{version}
+    requirements:
+        version:  latest|v1
+    defaults:
+        version:  latest

@@ -1,0 +1,32 @@
+parameters:
+    tlt_ticket_defect_type.entity.class: "Tlt\\Bundle\\TicketBundle\\Entity\\DefectType"
+    tlt_ticket_defect_type.manager.class: "Tlt\\Bundle\\TicketBundle\\Model\\DefectTypeManager"
+    tlt_ticket_defect_type.manager.api.class: "Tlt\\Bundle\\TicketBundle\\Model\\DefectTypeApiManager"
+    tlt_ticket_equipment_type.entity.class: "Tlt\\Bundle\\TicketBundle\\Entity\\EquipmentType"
+    tlt_ticket_equipment_type.manager.class: "Tlt\\Bundle\\TicketBundle\\Model\\EquipmentTypeManager"
+    tlt_ticket_equipment_type.manager.api.class: "Tlt\\Bundle\\TicketBundle\\Model\\EquipmentTypeApiManager"
+services:
+    tlt_ticket_defect_type.manager:
+        class: "%tlt_ticket_defect_type.manager.class%"
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@oro_security.acl_helper"
+    tlt_ticket_defect_type.manager.api:
+        class: "%tlt_ticket_defect_type.manager.api.class%"
+        parent: oro_soap.manager.entity_manager.abstract
+        arguments:
+            - "%tlt_ticket_defect_type.entity.class%"
+            - "@doctrine.orm.entity_manager"
+            - "@tlt_ticket_defect_type.manager"
+    tlt_ticket_equipment_type.manager:
+        class: "%tlt_ticket_equipment_type.manager.class%"
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@oro_security.acl_helper"
+    tlt_ticket_equipment_type.manager.api:
+        class: "%tlt_ticket_equipment_type.manager.api.class%"
+        parent: oro_soap.manager.entity_manager.abstract
+        arguments:
+            - "%tlt_ticket_equipment_type.entity.class%"
+            - "@doctrine.orm.entity_manager"
+            - "@tlt_ticket_equipment_type.manager"

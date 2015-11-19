@@ -1,0 +1,48 @@
+tlt_ticket_defect_type_create:
+    type: entity
+    class: "TltTicketBundle:DefectType"
+    permission: CREATE
+    group_name: ""
+    bindings: ~
+tlt_ticket_defect_type_view:
+    type: entity
+    class: "TltTicketBundle:DefectType"
+    permission: VIEW
+    group_name: ""
+    bindings: ~
+tlt_ticket_defect_type_update:
+    type: entity
+    class: "TltTicketBundle:DefectType"
+    permission: EDIT
+    group_name: ""
+    bindings: ~
+tlt_ticket_defect_type_delete:
+    type: entity
+    class: "TltTicketBundle:DefectType"
+    permission: DELETE
+    group_name: ""
+    bindings: ~
+tlt_ticket_equipment_type_create:
+    type: entity
+    class: "TltTicketBundle:EquipmentType"
+    permission: CREATE
+    group_name: ""
+    bindings: ~
+tlt_ticket_equipment_type_view:
+    type: entity
+    class: "TltTicketBundle:EquipmentType"
+    permission: VIEW
+    group_name: ""
+    bindings: ~
+tlt_ticket_equipment_type_update:
+    type: entity
+    class: "TltTicketBundle:EquipmentType"
+    permission: EDIT
+    group_name: ""
+    bindings: ~
+tlt_ticket_equipment_type_delete:
+    type: entity
+    class: "TltTicketBundle:EquipmentType"
+    permission: DELETE
+    group_name: ""
+    bindings: ~

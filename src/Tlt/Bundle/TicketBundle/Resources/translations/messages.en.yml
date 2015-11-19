@@ -1,0 +1,37 @@
+tlt:
+    ticket:
+        menu:
+            tab:
+                configuration.label: Settings
+
+        # DefectType entity
+        defecttype:
+            entity_label: Defect Type
+            entity_plural_label: Defect Types
+            block.general: Defect Type
+            id.label: Id
+            owner.label: Owner
+            organization.label: Organization
+            name.label: Name
+            description.label: Description
+            message:
+                saved: Defect Type saved
+            menu:
+                index.label: Defect Types
+
+        # EquipmentType entity
+        equipmenttype:
+            entity_label: Equipment Type
+            entity_plural_label: Equipment Types
+            block.general: Equipment Type
+            id.label: Id
+            owner.label: Owner
+            organization.label: Organization
+            name.label: Name
+            defect_type.label: Defect Type
+            message:
+                saved: Equipment Type saved
+            menu:
+                index.label: Equipment Types
+            form:
+                choose_defect_type: Choose a defect type

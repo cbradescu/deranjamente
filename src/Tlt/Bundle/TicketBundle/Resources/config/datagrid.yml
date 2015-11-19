@@ -1,0 +1,133 @@
+datagrid:
+    base-defect_type-grid:
+        source:
+            type: orm
+            acl_resource: tlt_ticket_defect_type_view
+            query:
+                select:
+                    - defectType.id
+                    - defectType.name
+                from:
+                    - 
+                        table: "%tlt_ticket_defect_type.entity.class%"
+                        alias: defectType
+        columns:
+            name:
+                label: tlt.ticket.defecttype.name.label
+        sorters:
+            columns:
+                name:
+                    data_name: defectType.name
+            default:
+                name: ASC
+        filters:
+            columns:
+                name:
+                    type: string
+                    data_name: defectType.name
+                    enabled: true
+        properties:
+            id: ~
+            view_link:
+                type: url
+                route: tlt_ticket_defect_type_view
+                params:
+                    - id
+            update_link:
+                type: url
+                route: tlt_ticket_defect_type_update
+                params:
+                    - id
+            delete_link:
+                type: url
+                route: tlt_ticket_defect_type_api_delete_defect_type
+                params:
+                    - id
+        actions:
+            view:
+                type: navigate
+                acl_resource: tlt_ticket_defect_type_view
+                label: oro.grid.action.view
+                icon: eye-open
+                link: view_link
+                rowAction: true
+            update:
+                type: navigate
+                acl_resource: tlt_ticket_defect_type_update
+                label: oro.grid.action.update
+                icon: edit
+                link: update_link
+            delete:
+                type: delete
+                acl_resource: tlt_ticket_defect_type_delete
+                label: oro.grid.action.delete
+                icon: trash
+                link: delete_link
+    defect_type-grid:
+        extends: base-defect_type-grid
+    base-equipment_type-grid:
+        source:
+            type: orm
+            acl_resource: tlt_ticket_equipment_type_view
+            query:
+                select:
+                    - equipmentType.id
+                    - equipmentType.name
+                from:
+                    -
+                        table: "%tlt_ticket_equipment_type.entity.class%"
+                        alias: equipmentType
+        columns:
+            name:
+                label: tlt.ticket.equipmenttype.name.label
+        sorters:
+            columns:
+                name:
+                    data_name: equipmentType.name
+            default:
+                name: ASC
+        filters:
+            columns:
+                name:
+                    type: string
+                    data_name: equipmentType.name
+                    enabled: true
+        properties:
+            id: ~
+            view_link:
+                type: url
+                route: tlt_ticket_equipment_type_view
+                params:
+                    - id
+            update_link:
+                type: url
+                route: tlt_ticket_equipment_type_update
+                params:
+                    - id
+            delete_link:
+                type: url
+                route: tlt_ticket_equipment_type_api_delete_equipment_type
+                params:
+                    - id
+        actions:
+            view:
+                type: navigate
+                acl_resource: tlt_ticket_equipment_type_view
+                label: oro.grid.action.view
+                icon: eye-open
+                link: view_link
+                rowAction: true
+            update:
+                type: navigate
+                acl_resource: tlt_ticket_equipment_type_update
+                label: oro.grid.action.update
+                icon: edit
+                link: update_link
+            delete:
+                type: delete
+                acl_resource: tlt_ticket_equipment_type_delete
+                label: oro.grid.action.delete
+                icon: trash
+                link: delete_link
+    equipment_type-grid:
+        extends: base-equipment_type-grid
