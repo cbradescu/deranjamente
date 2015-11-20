@@ -12,6 +12,9 @@ oro_menu_config:
         tlt_ticket_equipment_type_index:
             label: tlt.ticket.equipmenttype.menu.index.label
             route: tlt_ticket_equipment_type_index
+        tlt_ticket_equipment_index:
+            label: tlt.ticket.equipment.menu.index.label
+            route: tlt_ticket_equipment_index
     tree:
         application_menu:
             children:
@@ -19,3 +22,4 @@ oro_menu_config:
                     children:
                         tlt_ticket_defect_type_index: ~
                         tlt_ticket_equipment_type_index: ~
+                        tlt_ticket_equipment_index: ~

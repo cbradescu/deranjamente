@@ -1,0 +1,13 @@
+Tlt\Bundle\TicketBundle\Entity\EquipmentType:
+    alias: tlt_ticket_equipment_type
+    label: tlt.ticket.equipmenttype.entity_plural_label
+    route:
+        name: tlt_ticket_equipment_type_view
+        parameters:
+            id: id
+    search_template: TltTicketBundle:EquipmentType:searchResult.html.twig
+    fields:
+        -
+            name:                   name
+            target_type:            text
+            target_fields:          [name]

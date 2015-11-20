@@ -1,3 +1,0 @@
-tlt_ticket_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: TltTicketBundle:Default:index }

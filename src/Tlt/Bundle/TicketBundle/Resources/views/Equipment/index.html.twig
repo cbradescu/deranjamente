@@ -1,0 +1,12 @@
+{% extends 'OroUIBundle:actions:index.html.twig' %}
+{% import 'OroDataGridBundle::macros.html.twig' as dataGrid %}
+{% set pageTitle = 'tlt.ticket.equipment.entity_plural_label'|trans %}
+{% set gridName = 'equipment-grid' %}
+{% block navButtons %}
+    {% if true or resource_granted('tlt_ticket_equipment_create') %}
+        {{ UI.addButton({
+            'path' : path('tlt_ticket_equipment_create'),
+            'entity_label': 'tlt.ticket.equipment.entity_label'|trans
+        }) }}
+    {% endif %}
+{% endblock %}

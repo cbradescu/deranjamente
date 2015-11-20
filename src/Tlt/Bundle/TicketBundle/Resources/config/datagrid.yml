@@ -73,21 +73,39 @@ datagrid:
                 select:
                     - equipmentType.id
                     - equipmentType.name
+                    - dt.name as defectType
                 from:
-                    -
+                    - 
                         table: "%tlt_ticket_equipment_type.entity.class%"
                         alias: equipmentType
+                join:
+                    left:
+                        -
+                            join: equipmentType.defectType
+                            alias: dt
         columns:
             name:
                 label: tlt.ticket.equipmenttype.name.label
+            defectType:
+                label: tlt.ticket.equipmenttype.defect_type.label
         sorters:
             columns:
                 name:
                     data_name: equipmentType.name
+                defectType:
+                    data_name: dt.name
             default:
+                defectType: ASC
                 name: ASC
         filters:
             columns:
+                defectType:
+                    type: entity
+                    data_name: equipmentType.defectType
+                    options:
+                        field_options:
+                            class: "%tlt_ticket_defect_type.entity.class%"
+                    enabled: true
                 name:
                     type: string
                     data_name: equipmentType.name
@@ -131,3 +149,114 @@ datagrid:
                 link: delete_link
     equipment_type-grid:
         extends: base-equipment_type-grid
+    base-equipment-grid:
+        source:
+            type: orm
+            acl_resource: tlt_ticket_equipment_view
+            query:
+                select:
+                    - equipment.id
+                    - equipment.name
+                    - equipment.property
+                    - equipment.guarantee
+                    - equipment.enabled
+                    - et.name as equipmentType
+                from:
+                    - 
+                        table: "%tlt_ticket_equipment.entity.class%"
+                        alias: equipment
+                join:
+                    left:
+                        -
+                            join: equipment.equipmentType
+                            alias: et
+        columns:
+            name:
+                label: tlt.ticket.equipment.name.label
+            property:
+                label: tlt.ticket.equipment.property.label
+                frontend_type: html
+                type: twig
+                template: TltTicketBundle:Equipment:Datagrid/Property/property.html.twig
+            guarantee:
+                label: tlt.ticket.equipment.guarantee.label
+                frontend_type: datetime
+            enabled:
+                label: tlt.ticket.equipment.enabled.label
+                frontend_type: select
+                choices:
+                   0: Inactive
+                   1: Active
+            equipmentType:
+                label: tlt.ticket.equipment.equipment_type.label
+        sorters:
+            columns:
+                name:
+                    data_name: equipment.name
+                equipmentType:
+                    data_name: et.name
+            default:
+                name: ASC
+        filters:
+            columns:
+                equipmentType:
+                    type: entity
+                    data_name: equipment.equipmentType
+                    options:
+                        field_options:
+                            class: "%tlt_ticket_equipment_type.entity.class%"
+                    enabled: true
+                guarantee:
+                    type:      date
+                    data_name: equipment.guarantee
+                property:
+                    type:      choice
+                    data_name: equipment.property
+                    options:
+                        field_options:
+                            multiple: false
+                            choices: Tlt\Bundle\TicketBundle\Entity\Equipment::getPropertyLabels()
+                name:
+                    type: string
+                    data_name: equipment.name
+                    enabled: true
+
+        properties:
+            id: ~
+            view_link:
+                type: url
+                route: tlt_ticket_equipment_view
+                params:
+                    - id
+            update_link:
+                type: url
+                route: tlt_ticket_equipment_update
+                params:
+                    - id
+            delete_link:
+                type: url
+                route: tlt_ticket_equipment_api_delete_equipment
+                params:
+                    - id
+        actions:
+            view:
+                type: navigate
+                acl_resource: tlt_ticket_equipment_view
+                label: oro.grid.action.view
+                icon: eye-open
+                link: view_link
+                rowAction: true
+            update:
+                type: navigate
+                acl_resource: tlt_ticket_equipment_update
+                label: oro.grid.action.update
+                icon: edit
+                link: update_link
+            delete:
+                type: delete
+                acl_resource: tlt_ticket_equipment_delete
+                label: oro.grid.action.delete
+                icon: trash
+                link: delete_link
+    equipment-grid:
+        extends: base-equipment-grid

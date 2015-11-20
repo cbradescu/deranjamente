@@ -54,6 +54,7 @@ class EquipmentTypeController extends Controller
 
     /**
      * @Route("/update/{id}", name="tlt_ticket_equipment_type_update", requirements={"id"="\d+"})
+     * @Template("TltTicketBundle:EquipmentType:update.html.twig")
      * @Template
      * @AclAncestor("tlt_ticket_equipment_type_update")
      */
@@ -66,23 +67,28 @@ class EquipmentTypeController extends Controller
      * @param EquipmentType $equipmentType
      * @return array
      */
-    protected function update(EquipmentType $equipmentType)
+    protected function update(EquipmentType $entity)
     {
-        if ($this->get('tlt_ticket_equipment_type.form.handler.entity')->process($equipmentType)) {
-            $this->get('session')->getFlashBag()->add(
-                'success',
-                $this->get('translator')->trans('tlt.ticket.equipmenttype.message.saved')
-            );
-
-            return $this->get('oro_ui.router')->redirectAfterSave(
-                ['route' => 'tlt_ticket_equipment_type_update', 'parameters' => ['id' => $equipmentType->getId()]],
-                ['route' => 'tlt_ticket_equipment_type_view', 'parameters' => ['id' => $equipmentType->getId()]]
-            );
+        if (!$entity) {
+            $entity = $this->getManager()->createEntity();
         }
-
-        return array(
-            'entity' => $equipmentType,
-            'form' => $this->get('tlt_ticket_equipment_type.form.entity')->createView()
+        return $this->get('oro_form.model.update_handler')->handleUpdate(
+            $entity,
+            $this->get('tlt_ticket_equipment_type.form.entity'),
+            function (EquipmentType $entity) {
+                return array(
+                    'route' => 'tlt_ticket_equipment_type_update',
+                    'parameters' => array('id' => $entity->getId())
+                );
+            },
+            function (EquipmentType $entity) {
+                return array(
+                    'route' => 'tlt_ticket_equipment_type_view',
+                    'parameters' => array('id' => $entity->getId())
+                );
+            },
+            $this->get('translator')->trans('tlt.ticket.equipmenttype.message.saved'),
+            $this->get('tlt_ticket_equipment_type.form.handler.entity')
         );
     }
 }

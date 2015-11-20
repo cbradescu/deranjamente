@@ -5,6 +5,12 @@ parameters:
     tlt_ticket_equipment_type.entity.class: "Tlt\\Bundle\\TicketBundle\\Entity\\EquipmentType"
     tlt_ticket_equipment_type.manager.class: "Tlt\\Bundle\\TicketBundle\\Model\\EquipmentTypeManager"
     tlt_ticket_equipment_type.manager.api.class: "Tlt\\Bundle\\TicketBundle\\Model\\EquipmentTypeApiManager"
+    tlt_ticket_equipment.entity.class: "Tlt\\Bundle\\TicketBundle\\Entity\\Equipment"
+    tlt_ticket_equipment.manager.class: "Tlt\\Bundle\\TicketBundle\\Model\\EquipmentManager"
+    tlt_ticket_equipment.manager.api.class: "Tlt\\Bundle\\TicketBundle\\Model\\EquipmentApiManager"
+
+    tlt_ticket.equipment.twig.class: Tlt\Bundle\TicketBundle\Twig\EquipmentExtension
+    tlt_ticket.form.type.equipment_type_select.class: Tlt\Bundle\TicketBundle\Form\Type\EquipmentTypeSelectType
 services:
     tlt_ticket_defect_type.manager:
         class: "%tlt_ticket_defect_type.manager.class%"
@@ -30,3 +36,33 @@ services:
             - "%tlt_ticket_equipment_type.entity.class%"
             - "@doctrine.orm.entity_manager"
             - "@tlt_ticket_equipment_type.manager"
+    tlt_ticket_equipment.manager:
+        class: "%tlt_ticket_equipment.manager.class%"
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@oro_security.acl_helper"
+    tlt_ticket_equipment.manager.api:
+        class: "%tlt_ticket_equipment.manager.api.class%"
+        parent: oro_soap.manager.entity_manager.abstract
+        arguments:
+            - "%tlt_ticket_equipment.entity.class%"
+            - "@doctrine.orm.entity_manager"
+            - "@tlt_ticket_equipment.manager"
+
+    tlt_ticket.twig.equipment_extension:
+        class: %tlt_ticket.equipment.twig.class%
+        tags:
+            - { name: twig.extension }
+
+    tlt_ticket_equipment_type.form.autocomplete.equipment_type.search_handler:
+        parent: oro_form.autocomplete.search_handler
+        arguments:
+            - %tlt_ticket_equipment_type.entity.class%
+            - ["name"]
+        tags:
+            - { name: oro_form.autocomplete.search_handler, alias: tlt_ticket_equipment_type_autocomplete, acl_resource: tlt_ticket_equipment_type_view }
+
+    tlt_ticket.form.type.equipment_type_select:
+        class: %tlt_ticket.form.type.equipment_type_select.class%
+        tags:
+            - { name: form.type, alias: tlt_ticket_equipment_type_select }

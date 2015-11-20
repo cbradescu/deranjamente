@@ -46,3 +46,27 @@ tlt_ticket_equipment_type_delete:
     permission: DELETE
     group_name: ""
     bindings: ~
+tlt_ticket_equipment_create:
+    type: entity
+    class: "TltTicketBundle:Equipment"
+    permission: CREATE
+    group_name: ""
+    bindings: ~
+tlt_ticket_equipment_view:
+    type: entity
+    class: "TltTicketBundle:Equipment"
+    permission: VIEW
+    group_name: ""
+    bindings: ~
+tlt_ticket_equipment_update:
+    type: entity
+    class: "TltTicketBundle:Equipment"
+    permission: EDIT
+    group_name: ""
+    bindings: ~
+tlt_ticket_equipment_delete:
+    type: entity
+    class: "TltTicketBundle:Equipment"
+    permission: DELETE
+    group_name: ""
+    bindings: ~

@@ -5,6 +5,9 @@ parameters:
     tlt_ticket_equipment_type.form.type.entity.class: "Tlt\\Bundle\\TicketBundle\\Form\\Type\\EquipmentTypeType"
     tlt_ticket_equipment_type.form.type.entity.api.class: "Tlt\\Bundle\\TicketBundle\\Form\\Type\\EquipmentTypeApiType"
     tlt_ticket_equipment_type.form.handler.entity.class: "Tlt\\Bundle\\TicketBundle\\Form\\Handler\\EquipmentTypeHandler"
+    tlt_ticket_equipment.form.type.entity.class: "Tlt\\Bundle\\TicketBundle\\Form\\Type\\EquipmentType"
+    tlt_ticket_equipment.form.type.entity.api.class: "Tlt\\Bundle\\TicketBundle\\Form\\Type\\EquipmentApiType"
+    tlt_ticket_equipment.form.handler.entity.class: "Tlt\\Bundle\\TicketBundle\\Form\\Handler\\EquipmentHandler"
 services:
     tlt_ticket_defect_type.form.type.entity:
         class: "%tlt_ticket_defect_type.form.type.entity.class%"
@@ -96,3 +99,48 @@ services:
         arguments:
             - equipment_type
             - tlt_ticket_equipment_type_api
+    tlt_ticket_equipment.form.type.entity:
+        class: "%tlt_ticket_equipment.form.type.entity.class%"
+        arguments:
+            - "@router"
+            - "@oro_security.security_facade"
+        tags:
+            - 
+                name: form.type
+                alias: tlt_ticket_equipment
+    tlt_ticket_equipment.form.handler.entity:
+        class: "%tlt_ticket_equipment.form.handler.entity.class%"
+        scope: request
+        arguments:
+            - "@tlt_ticket_equipment.form.entity"
+            - "@request"
+            - "@doctrine.orm.entity_manager"
+            - "@event_dispatcher"
+    tlt_ticket_equipment.form.entity:
+        class: "Symfony\\Component\\Form\\Form"
+        factory_method: createNamed
+        factory_service: form.factory
+        arguments:
+            - tlt_ticket_equipment_form
+            - tlt_ticket_equipment
+    tlt_ticket_equipment.form.type.entity.api:
+        class: "%tlt_ticket_equipment.form.type.entity.api.class%"
+        tags:
+            - 
+                name: form.type
+                alias: tlt_ticket_equipment_api
+    tlt_ticket_equipment.form.handler.entity.api:
+        class: "%tlt_ticket_equipment.form.handler.entity.class%"
+        scope: request
+        arguments:
+            - "@tlt_ticket_equipment.form.entity.api"
+            - "@request"
+            - "@doctrine.orm.entity_manager"
+            - "@event_dispatcher"
+    tlt_ticket_equipment.form.entity.api:
+        class: "Symfony\\Component\\Form\\Form"
+        factory_method: createNamed
+        factory_service: form.factory
+        arguments:
+            - equipment
+            - tlt_ticket_equipment_api

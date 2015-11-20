@@ -3,8 +3,6 @@ tlt:
         menu:
             tab:
                 configuration.label: Settings
-
-        # DefectType entity
         defecttype:
             entity_label: Defect Type
             entity_plural_label: Defect Types
@@ -18,8 +16,6 @@ tlt:
                 saved: Defect Type saved
             menu:
                 index.label: Defect Types
-
-        # EquipmentType entity
         equipmenttype:
             entity_label: Equipment Type
             entity_plural_label: Equipment Types
@@ -35,3 +31,25 @@ tlt:
                 index.label: Equipment Types
             form:
                 choose_defect_type: Choose a defect type
+        equipment:
+            entity_label: Equipment
+            entity_plural_label: Equipments
+            block.general: Equipment
+            id.label: Id
+            owner.label: Owner
+            organization.label: Organization
+            name.label: Name
+            enabled.label: Status
+            equipment_type.label: Equipment Type
+            property:
+                label: Property
+                teletrans.label: Teletrans
+                leasing.label: Leasing
+                client.label: Client
+            guarantee.label: Guarantee Date
+            message:
+                saved: Equipment saved
+            menu:
+                index.label: Equipments
+            form:
+                choose_equipment_type: Choose an equipment type
