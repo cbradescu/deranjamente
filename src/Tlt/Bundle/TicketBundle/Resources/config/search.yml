@@ -11,3 +11,17 @@ Tlt\Bundle\TicketBundle\Entity\EquipmentType:
             name:                   name
             target_type:            text
             target_fields:          [name]
+
+Tlt\Bundle\TicketBundle\Entity\Equipment:
+    alias: tlt_ticket_equipment
+    label: tlt.ticket.equipment.entity_plural_label
+    route:
+        name: tlt_ticket_equipment_view
+        parameters:
+            id: id
+    search_template: TltTicketBundle:Equipment:searchResult.html.twig
+    fields:
+        -
+            name:                   name
+            target_type:            text
+            target_fields:          [name]

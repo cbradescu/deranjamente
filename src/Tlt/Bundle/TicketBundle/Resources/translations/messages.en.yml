@@ -3,6 +3,9 @@ tlt:
         menu:
             tab:
                 configuration.label: Settings
+                defect.label: Defects
+        form:
+            choose_equipment: Select an equipment
         defecttype:
             entity_label: Defect Type
             entity_plural_label: Defect Types
@@ -53,3 +56,16 @@ tlt:
                 index.label: Equipments
             form:
                 choose_equipment_type: Choose an equipment type
+        defect:
+            entity_label: Defect
+            entity_plural_label: Defects
+            block.general: Defect
+            id.label: Id
+            owner.label: Owner
+            organization.label: Organization
+            announced_by.label: Announced By
+            equipment.label: Equipment
+            recorded_at.label: Recorded At
+            intro.label: Description
+            message.saved: Defect saved
+            form.choose_announced_by: Choose an user

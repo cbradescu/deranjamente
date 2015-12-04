@@ -7,3 +7,6 @@ tlt_ticket_equipment_type_api:
 tlt_ticket_equipment_api:
     resource: "@TltTicketBundle/Controller/Api/Rest/EquipmentController.php"
     type: rest
+tlt_ticket_defect_api:
+    resource: "@TltTicketBundle/Controller/Api/Rest/DefectController.php"
+    type: rest

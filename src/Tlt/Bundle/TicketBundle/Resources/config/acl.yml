@@ -70,3 +70,27 @@ tlt_ticket_equipment_delete:
     permission: DELETE
     group_name: ""
     bindings: ~
+tlt_ticket_defect_create:
+    type: entity
+    class: "TltTicketBundle:Defect"
+    permission: CREATE
+    group_name: ""
+    bindings: ~
+tlt_ticket_defect_view:
+    type: entity
+    class: "TltTicketBundle:Defect"
+    permission: VIEW
+    group_name: ""
+    bindings: ~
+tlt_ticket_defect_update:
+    type: entity
+    class: "TltTicketBundle:Defect"
+    permission: EDIT
+    group_name: ""
+    bindings: ~
+tlt_ticket_defect_delete:
+    type: entity
+    class: "TltTicketBundle:Defect"
+    permission: DELETE
+    group_name: ""
+    bindings: ~

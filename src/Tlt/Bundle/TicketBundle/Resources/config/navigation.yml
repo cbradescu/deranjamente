@@ -1,11 +1,18 @@
 oro_menu_config:
     items:
-        tlt_ticket_tab:
+        tlt_ticket_settings_tab:
             label: tlt.ticket.menu.tab.configuration.label
             uri:   '#'
             extras:
                 position: 1
                 description: Configuration options
+        tlt_ticket_defect_tab:
+            label: tlt.ticket.menu.tab.defect.label
+            uri:   '#'
+            route: tlt_ticket_defect_index
+            extras:
+                position: 1
+                description: Defects list
         tlt_ticket_defect_type_index:
             label: tlt.ticket.defecttype.menu.index.label
             route: tlt_ticket_defect_type_index
@@ -18,8 +25,9 @@ oro_menu_config:
     tree:
         application_menu:
             children:
-                tlt_ticket_tab:
+                tlt_ticket_settings_tab:
                     children:
                         tlt_ticket_defect_type_index: ~
                         tlt_ticket_equipment_type_index: ~
                         tlt_ticket_equipment_index: ~
+                tlt_ticket_defect_tab:
